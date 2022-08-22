@@ -31,7 +31,7 @@ def get_count():
   return delta.days
 
 def get_birthday():
-  ls=LunarSchema(month=12,day=2)
+  ls=LunarSchema(month=7,day=28)
   return ls.countdown()
 
 def get_words():
