@@ -5,6 +5,8 @@ from wechatpy.client.api import WeChatMessage, WeChatTemplate
 import requests
 import os
 import random
+from borax.calendars.festivals import LunarSchema
+
 
 today = datetime.now()
 start_date = os.environ['START_DATE']
@@ -29,10 +31,8 @@ def get_count():
   return delta.days
 
 def get_birthday():
-  next = datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d")
-  if next < datetime.now():
-    next = next.replace(year=next.year + 1)
-  return (next - today).days
+ ls=LunarSchema(month=12,day=2)
+  return ls.countdown()
 
 def get_words():
   words = requests.get("https://api.shadiao.pro/chp")
