@@ -52,6 +52,6 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 wea, temperature = get_weather()
-data = {"date":{"value":today},"weather":{"value":wea,"color":#b0a4e3},"city":{"value":city},"temperature":{"value":temperature,"color":#db5a6b},"love_days":{"value":get_count(),"color":#44cef6},"ba":{"value":ba,"color":#44cef6},"ma":{"value":ma,"color":#44cef6},"me":{"value":me,"color":#44cef6},"ge":{"value":ge,"color":#44cef6},"jie":{"value":jie,"color":#44cef6},"rui":{"value":rui,"color":#44cef6},"dujuan":{"value":dujuan,"color":#44cef6},"zw":{"value":zw,"color":#44cef6},"words":{"value":get_words(), "color":#ffa631}}
+data = {"date":{"value":today},"weather":{"value":wea,"color":"#b0a4e3"},"city":{"value":city},"temperature":{"value":temperature,"color":"#db5a6b"},"love_days":{"value":get_count(),"color":"#44cef6"},"ba":{"value":ba,"color":"#44cef6"},"ma":{"value":ma,"color":"#44cef6"},"me":{"value":me,"color":"#44cef6"},"ge":{"value":ge,"color":"#44cef6"},"jie":{"value":jie,"color":"#44cef6"},"rui":{"value":rui,"color":"#44cef6"},"dujuan":{"value":dujuan,"color":"#44cef6"},"zw":{"value":zw,"color":"#44cef6"},"words":{"value":get_words(), "color":"#ffa631"}}
 res = wm.send_template(user_id, template_id, data)
 print(res)
