@@ -30,8 +30,8 @@ def get_count():
   delta =today - datetime.strptime(start_date, "%Y-%m-%d")
   return delta.days
 
-def get_birthday():
-  ls=LunarSchema(month=12,day=2)
+def get_birthday(m,d):
+  ls=LunarSchema(month=m,day=d)
   return ls.countdown()-1
 
 def get_words():
@@ -43,11 +43,13 @@ def get_words():
 def get_random_color():
   return "#%06x" % random.randint(0, 0xFFFFFF)
 
-
+ba=get_birthday(11,1)
+ma=get_birthday(12,14)
+me=get_birthday(12,2)
 client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 wea, temperature = get_weather()
-data = {"weather":{"value":wea},"city":{"value":city},"temperature":{"value":temperature},"love_days":{"value":get_count()},"birth_days":{"value":get_birthday()},"words":{"value":get_words(), "color":get_random_color()}}
+data = {"weather":{"value":wea},"city":{"value":city},"temperature":{"value":temperature},"love_days":{"value":get_count()},"ba":{"value":ba},"ma":{"value":ma},"me":{"value":me},"words":{"value":get_words(), "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)
