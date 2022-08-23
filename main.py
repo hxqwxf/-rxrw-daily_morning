@@ -32,7 +32,7 @@ def get_count():
 
 def get_birthday(m,d):
   ls=LunarSchema(month=m,day=d)
-  return ls.countdown()-1
+  return ls.countdown()
 
 def get_words():
   words = requests.get("https://api.shadiao.pro/chp")
