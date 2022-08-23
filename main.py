@@ -46,10 +46,15 @@ def get_random_color():
 ba=get_birthday(11,1)
 ma=get_birthday(12,14)
 me=get_birthday(12,2)
+ge=get_birthday(3,18)
+jie=get_birthday(5,12)
+rui=get_birthday(10,4)
+dujuan=get_birthday(6,5)
+zw=get_birthday(10,22)
 client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 wea, temperature = get_weather()
-data = {"weather":{"value":wea},"city":{"value":city},"temperature":{"value":temperature},"love_days":{"value":get_count()},"ba":{"value":ba},"ma":{"value":ma},"me":{"value":me},"words":{"value":get_words(), "color":get_random_color()}}
+data = {"weather":{"value":wea},"city":{"value":city},"temperature":{"value":temperature},"love_days":{"value":get_count()},"ba":{"value":ba},"ma":{"value":ma},"me":{"value":me},"ge":{"value":ge},"jie":{"value":jie},"rui":{"value":rui},"dujuan":{"value":dujuan},"zw":{"value":zw},"words":{"value":get_words(), "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)
