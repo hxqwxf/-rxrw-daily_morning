@@ -35,8 +35,10 @@ def get_birthday(m,d):
   return ls.countdown()
 
 def get_words():
-  words = requests.get("http://api.guaqb.cn/v1/onesaid/")
-  return words
+  words = requests.get("https://api.shadiao.pro/chp")
+  if words.status_code!=200:
+    return get_words()
+  return words.json()['data']['text']
 def get_random_color():
   return "#%06x" % random.randint(0, 0xFFFFFF)
 
