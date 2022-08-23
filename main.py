@@ -35,11 +35,8 @@ def get_birthday(m,d):
   return ls.countdown()
 
 def get_words():
-  words = requests.get("https://api.shadiao.pro/chp")
-  if words.status_code != 200:
-    return get_words()
-  return words.json()['data']['text']
-
+  words = requests.get("http://api.guaqb.cn/v1/onesaid/")
+  return words
 def get_random_color():
   return "#%06x" % random.randint(0, 0xFFFFFF)
 
@@ -55,6 +52,6 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 wea, temperature = get_weather()
-data = {"weather":{"value":wea},"city":{"value":city},"temperature":{"value":temperature},"love_days":{"value":get_count()},"ba":{"value":ba},"ma":{"value":ma},"me":{"value":me},"ge":{"value":ge},"jie":{"value":jie},"rui":{"value":rui},"dujuan":{"value":dujuan},"zw":{"value":zw},"words":{"value":get_words(), "color":get_random_color()}}
+data = {"date":{"value":today},"weather":{"value":wea,"color":#b0a4e3},"city":{"value":city},"temperature":{"value":temperature,"color":#db5a6b},"love_days":{"value":get_count(),"color":#44cef6},"ba":{"value":ba,"color":#44cef6},"ma":{"value":ma,"color":#44cef6},"me":{"value":me,"color":#44cef6},"ge":{"value":ge,"color":#44cef6},"jie":{"value":jie,"color":#44cef6},"rui":{"value":rui,"color":#44cef6},"dujuan":{"value":dujuan,"color":#44cef6},"zw":{"value":zw,"color":#44cef6},"words":{"value":get_words(), "color":#ffa631}}
 res = wm.send_template(user_id, template_id, data)
 print(res)
