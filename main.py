@@ -1,4 +1,5 @@
 from datetime import datetime
+import time
 import math
 from wechatpy import WeChatClient
 from wechatpy.client.api import WeChatMessage, WeChatTemplate
@@ -60,7 +61,7 @@ data1={
     'msg':'生日倒计时小于30天提醒\n------\n'+msg1
 }
 res=requests.post(webhook, data)
-print(res)
+print(res.json())
 time.sleep(10)
 res1=requests.post(webhook, data1)
-print(res1)
+print(res1.json())
