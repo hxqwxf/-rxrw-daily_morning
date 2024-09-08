@@ -42,7 +42,7 @@ def get_words():
     return words.json()['data']['text']
 
 data = {
-    'msg': '生日推送@face=53@ \n------\n今日日期：{}\n今天是我来到世界的:{}天\n------\n'.format(date,get_count())+msg
+    'msg': '生日推送@face=53@ \n------\n今日日期：{}\n今天是我来到世界的:{}天\n------\n'.format(date,get_count())+msg+'每日一言\n{}'.format(get_words())
 }
 res=requests.post(webhook, data)
 print(res)
