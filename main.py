@@ -17,8 +17,10 @@ start_date = os.environ['START_DATE']
 with open('birthday.txt', 'r', encoding='utf-8') as file:
     students = file.readlines()  # 读取所有行
 msg=''
+msg1=''
 # 处理每一行数据
 student_list = []
+advanced=[]
 for student in students:
     name, birth,month,day,countdown = student.strip().split(',')  # 去除行尾空白并按逗号分割字段
     student_list.append({'name': name, 'birth': birth, 'month': month,'day':day,'countdown': countdown})
@@ -29,7 +31,16 @@ for student in student_list:
     student['countdown']=ls.countdown()
     text='距离{}生日{}还有:{}天\n'.format(student['name'],student['birth'],student['countdown'])
     msg+=text
-
+    if(student['countdown']<=30):
+        advanced.append(student)
+        
+# 倒计时小于30天的提醒
+for student in advanced:
+    text1='距离{}生日{}还有:{}天\n'.format(student['name'],student['birth'],student['countdown'])
+    msg1+=text1
+if(len(msg1)==0):
+    msg1='目前还没有哦~'
+    
 def get_count():
     delta =today - datetime.strptime(start_date, "%Y-%m-%d")
     return delta.days
@@ -44,6 +55,12 @@ def get_words():
 data = {
     'msg': '生日推送@face=53@ \n------\n今日日期：{}\n今天是我来到世界的:{}天\n------\n'.format(date,get_count())+msg+'每日一言\n{}'.format(get_words())
 }
+
+data1={
+    'msg':'生日倒计时小于30天提醒\n------\n'+msg1
+}
 res=requests.post(webhook, data)
 print(res)
-print(data)
+time.sleep(10)
+res1=requests.post(webhook, data1)
+print(res1)
