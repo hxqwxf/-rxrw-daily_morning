@@ -30,3 +30,4 @@ jobs:
       START_DATE: ${{ secrets.START_DATE }}
       BIRTHDAY: ${{ secrets.BIRTHDAY }}
       CITY: ${{ secrets.CITY }}
+      QMSG_KEY: ${{secrets.QMSG_KEY}}
